@@ -1,3 +1,5 @@
+import SemesterSelect from "./PresensiSelector/SemesterSelect"
+
 const Greeting = ({name, isAdmin}) => {
     const getGreet = () => {
         const date = new Date()
@@ -17,11 +19,14 @@ const Greeting = ({name, isAdmin}) => {
     }
 
     return (
-        <div className='mb-6'>
-            <p className='text-secondary mb-1'>Selamat {getGreet()},</p>
-            <h3 className='text-primary text-2xl font-semibold'>
-                {isAdmin ? 'Admin' : 'Orang Tua ' + name}
-            </h3>
+        <div className={`${isAdmin ? 'mb-8' : 'mb-6'} flex justify-between items-end`}>
+            <div>
+                <p className='text-secondary mb-1'>Selamat {getGreet()},</p>
+                <h3 className='text-primary text-2xl font-semibold'>
+                    {isAdmin ? 'Admin' : 'Orang Tua ' + name}
+                </h3>
+            </div>
+            <SemesterSelect />
         </div>
     );
 }

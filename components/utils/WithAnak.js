@@ -36,8 +36,6 @@ const WithAnak = (Component) => {
                     const res = await axios.get(`http://localhost:3000/api/presensi/${year}/${part}/anak`)
                     const data = await res.data
 
-                    console.log(anak, semester)
-
                     if (!data.includes(anak.name)) {
                         clearAnak()
                         router.push('/pilih-anak')

@@ -16,3 +16,8 @@ export const setLoading = bool => ({
     type: 'SET_LOADING',
     payload: bool
 })
+
+export const setIsAdmin = bool => ({
+    type: 'SET_IS_ADMIN',
+    payload: bool
+})

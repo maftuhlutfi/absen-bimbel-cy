@@ -1,38 +1,66 @@
 import getDoc from "../../../../components/utils/gSheetDoc";
 
 export default function handler(req, res) {
-    (async function() {
-        try {
-            const {year, semester} = req.query
-            const doc = await getDoc()
-            const sheet = await doc.sheetsByIndex.filter(sh => sh.title == `${year.replace(' ', '/')} - Sem ${semester}`)[0]
-            await sheet.loadHeaderRow()
-            const rows = await sheet.getRows()
-            const data = await rows.map(row => ({
-                no: row.no, 
-                name: row.name, 
-                sex: row.sex,
-                class: row.class,
-                presensi: sheet.headerValues.slice(4).map(val => ({
-                    date: val.split('/')[1],
-                    month: val.split('/')[0],
-                    year: val.split('/')[2],
-                    value: row[val]
+    if (req.method == 'GET') {
+        (async function() {
+            try {
+                const {year, semester} = req.query
+                const doc = await getDoc()
+                const sheet = await doc.sheetsByIndex.filter(sh => sh.title == `${year.replace(' ', '/')} - Sem ${semester}`)[0]
+                await sheet.loadHeaderRow()
+                const rows = await sheet.getRows()
+                const data = await rows.map(row => ({
+                    no: row.no, 
+                    name: row.name, 
+                    sex: row.sex,
+                    class: row.class,
+                    presensi: sheet.headerValues.slice(4).map(val => ({
+                        date: val.split('/')[1],
+                        month: val.split('/')[0],
+                        year: val.split('/')[2],
+                        value: row[val]
+                    }))
                 }))
-            }))
-            res.send(data.map(d => ({
-                ...d,
-                presensi: formatPresensi(d.presensi),
-                total: d.presensi.reduce((total, p) => p.value ? total + 1 : total, 0),
-                hadir: d.presensi.reduce((total, p) => p.value == 1 ? total + 1 : total, 0),
-                izin: d.presensi.reduce((total, p) => p.value == 2 ? total + 1 : total, 0),
-                tidakHadir: d.presensi.reduce((total, p) => p.value == 0 ? total + 1 : total, 0)
-            })))
-        } catch (e) {
-            res.send('error')
-            console.log(e)
-        }
-      }())
+                res.send(data.map(d => ({
+                    ...d,
+                    presensi: formatPresensi(d.presensi),
+                    total: d.presensi.reduce((total, p) => p.value ? total + 1 : total, 0),
+                    hadir: d.presensi.reduce((total, p) => p.value == 1 ? total + 1 : total, 0),
+                    izin: d.presensi.reduce((total, p) => p.value == 2 ? total + 1 : total, 0),
+                    tidakHadir: d.presensi.reduce((total, p) => p.value == 0 ? total + 1 : total, 0)
+                })))
+            } catch (e) {
+                res.send('error')
+                console.log(e)
+            }
+          }())
+    }
+
+    if (req.method == 'POST') {
+        (async function() {
+            const {absensi, tanggal, startIndex} = req.body
+            try {
+                const {year, semester} = req.query
+                const doc = await getDoc()
+                const sheet = await doc.sheetsByIndex.filter(sh => sh.title == `${year.replace(' ', '/')} - Sem ${semester}`)[0]
+                
+                await sheet.loadHeaderRow()
+                const headerIndex = await sheet.headerValues.findIndex(h => h == tanggal)
+                const headerString = await String.fromCharCode(65 + headerIndex)
+
+                await sheet.loadCells(`${headerString}${startIndex+2}:${headerString}${absensi.length + 1 + startIndex}`)
+                await absensi.forEach((value, index) => {
+                    sheet.getCellByA1(`H${index+2+startIndex}`).value = value
+                })
+                await sheet.saveUpdatedCells()
+                await res.send('Sukses update absen.')
+            } catch (e) {
+                res.send('error')
+                console.log(e)
+            }
+          }())
+    }
+    
   }
 
 const formatPresensi = (presensi) => {

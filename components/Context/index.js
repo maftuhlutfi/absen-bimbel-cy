@@ -1,12 +1,13 @@
 import axios from "axios"
 import { createContext, useEffect, useReducer } from "react"
-import { clearAnak, setAnak, setLoading, setSemester } from "./dataAction"
+import { clearAnak, setAnak, setIsAdmin, setLoading, setSemester } from "./dataAction"
 import dataReducer from "./dataReducer"
 
 const initDataState = {
     semester: '',
     anak: null,
-    loading: false
+    loading: false,
+    isAdmin: false
 }
 
 export const DataContext = createContext(initDataState)
@@ -35,18 +36,30 @@ const AllContextProvider = ({children}) => {
         }
     }, [dataState.anak])
 
+    useEffect(() => {
+        if (dataState.isAdmin) {
+            if (!JSON.parse(window.localStorage.getItem('isAdmin'))) {
+                window.localStorage.setItem('isAdmin', JSON.stringify(dataState.isAdmin))
+            }
+        } else {
+            dataDispatch(setIsAdmin(JSON.parse(window.localStorage.getItem('isAdmin')) || false))
+        }
+    }, [dataState.isAdmin])
+
     return (
         <DataContext.Provider value={{
             semester: dataState.semester,
             anak: dataState.anak,
             loading: dataState.loading,
+            isAdmin: dataState.isAdmin,
             setSemester: data => dataDispatch(setSemester(data)),
             setAnak: data => dataDispatch(setAnak(data)),
             clearAnak: () => {
                 dataDispatch(clearAnak())
                 window.localStorage.removeItem('anak')
             },
-            setLoading: data => dataDispatch(setLoading(data))
+            setLoading: data => dataDispatch(setLoading(data)),
+            setIsAdmin: data => dataDispatch(setIsAdmin(data))
         }}>
             {children}
         </DataContext.Provider>
