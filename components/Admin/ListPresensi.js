@@ -1,4 +1,4 @@
-/api/api/api/apiimport axios from "axios";
+import axios from "axios";
 import {useRouter} from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../Context";
@@ -73,7 +73,7 @@ const ListPresensi = ({presensi, kelas, tanggal}) => {
             const year = semesterArray[0].replace('/', ' ')
             const part = semesterArray[3]
 
-            const res = await axios.post(`http://localhost:3000/api/presensi/${year}/${part}`, {
+            const res = await axios.post(`/api/presensi/${year}/${part}`, {
                 absensi,
                 tanggal,
                 startIndex,

@@ -1,4 +1,4 @@
-/api/api/api/apiimport axios from "axios"
+import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import AddPresensiSelector from "../components/Admin/AddPresensiSelector"
 import DataAnakCard from "../components/Admin/DataAnakCard"
@@ -26,7 +26,7 @@ const DashboardAdmin = () => {
             const year = semesterArray[0].replace('/', ' ')
             const part = semesterArray[3]
 
-            const res = await axios.get(`http://localhost:3000/api/presensi/${year}/${part}`)
+            const res = await axios.get(`/api/presensi/${year}/${part}`)
             const data = await res.data
             setPresensi(data)
         }
@@ -35,7 +35,7 @@ const DashboardAdmin = () => {
             const year = semesterArray[0].replace('/', ' ')
             const part = semesterArray[3]
 
-            const res = await axios.get(`http://localhost:3000/api/presensi/${year}/${part}/all-date`)
+            const res = await axios.get(`/api/presensi/${year}/${part}/all-date`)
             const data = await res.data
             setActiveTanggal(getNearestNextDate(data))
             setListTanggal(data)
@@ -46,7 +46,7 @@ const DashboardAdmin = () => {
             const year = semesterArray[0].replace('/', ' ')
             const part = semesterArray[3]
 
-            const res = await axios.get(`http://localhost:3000/api/presensi/${year}/${part}/all-kelas`)
+            const res = await axios.get(`/api/presensi/${year}/${part}/all-kelas`)
             const data = await res.data
             setActiveKelas('Semua')
             setListKelas(['Semua', ...data])

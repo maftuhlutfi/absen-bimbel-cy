@@ -1,4 +1,4 @@
-/api/api/api/apiimport axios from "axios";
+import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../Context";
 
@@ -8,7 +8,7 @@ const SemesterSelect = () => {
 
     useEffect(() => {
         const getSemesterList = async () => {
-            const res = await axios.get('http://localhost:3000/api/presensi/all-semester')
+            const res = await axios.get('/api/presensi/all-semester')
             const data = await res.data
             setSemesterList(data)
         }

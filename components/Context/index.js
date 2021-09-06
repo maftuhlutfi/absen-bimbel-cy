@@ -1,4 +1,4 @@
-/api/api/api/apiimport axios from "axios"
+import axios from "axios"
 import { createContext, useEffect, useReducer } from "react"
 import { clearAnak, setAnak, setIsAdmin, setLoading, setSemester } from "./dataAction"
 import dataReducer from "./dataReducer"
@@ -17,7 +17,7 @@ const AllContextProvider = ({children}) => {
     
     useEffect(() => {
         const getSemesterNow = async () => {
-            const res = await axios.get('http://localhost:3000/api/presensi/all-semester')
+            const res = await axios.get('/api/presensi/all-semester')
             const data = await res.data
             dataDispatch(setSemester(data[data.length - 1]))
         }

@@ -1,4 +1,4 @@
-/api/api/api/apiimport axios from "axios"
+import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../components/Context"
 import Note from "../components/Home/Note"
@@ -19,7 +19,7 @@ const Home = () => {
       const year = semesterArray[0].replace('/', ' ')
       const part = semesterArray[3]
 
-      const res = await axios.get(`http://localhost:3000/api/presensi/${year}/${part}/${anak.name}`)
+      const res = await axios.get(`/api/presensi/${year}/${part}/${anak.name}`)
       const data = await res.data
       setPresensi(data)
     }

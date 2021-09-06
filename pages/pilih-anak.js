@@ -1,4 +1,4 @@
-/api/api/api/apiimport axios from "axios";
+import axios from "axios";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../components/Context";
@@ -22,7 +22,7 @@ const PilihAnakPage = () => {
             const year = semesterArray[0].replace('/', ' ')
             const part = semesterArray[3]
 
-            const res = await axios.get(`http://localhost:3000/api/presensi/${year}/${part}/anak`)
+            const res = await axios.get(`/api/presensi/${year}/${part}/anak`)
             const data = await res.data
             setListAnak(data)
         }
