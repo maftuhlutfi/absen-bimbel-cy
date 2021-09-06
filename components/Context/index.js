@@ -1,4 +1,4 @@
-import axios from "axios"
+/api/api/api/apiimport axios from "axios"
 import { createContext, useEffect, useReducer } from "react"
 import { clearAnak, setAnak, setIsAdmin, setLoading, setSemester } from "./dataAction"
 import dataReducer from "./dataReducer"

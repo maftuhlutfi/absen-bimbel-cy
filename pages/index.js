@@ -1,4 +1,4 @@
-import axios from "axios"
+/api/api/api/apiimport axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../components/Context"
 import Note from "../components/Home/Note"
