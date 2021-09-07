@@ -52,10 +52,10 @@ const Header = () => {
                         <Image src='/icons/user.svg' width={20} height={20} />
                         Pilih Anak
                     </div>
-                    {!isAdmin && <div className='px-8 py-4 hover:bg-icon-light cursor-pointer flex gap-4 w-full justify-center' onClick={() => router.push('/admin')}>
+                    <div className='px-8 py-4 hover:bg-icon-light cursor-pointer flex gap-4 w-full justify-center' onClick={() => router.push('/admin')}>
                         <Image src='/icons/admin.svg' width={20} height={20} />
                         Admin
-                    </div>}
+                    </div>
                     {isAdmin &&
                         <div className='px-8 py-4 hover:bg-icon-light cursor-pointer flex gap-4 w-full justify-center' onClick={handleKeluar}>
                             <Image src='/icons/logout.svg' width={20} height={20} />
