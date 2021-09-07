@@ -12,7 +12,7 @@ const PresensiDot = ({presensi}) => {
         <Card addStyle='bg-white flex flex-col gap-4 p-6 mb-8'>
             {presensi.map(({monthString, values}, indexBulan) => 
                 <div key={indexBulan} className='flex items-center'>
-                    <p className='w-1/12 flex-shrink-0'>{monthString.slice(0,3)}</p>
+                    <p className='w-1/12 flex-shrink-0 text-sm'>{monthString.slice(0,3)}</p>
                     <div className='flex gap-1.5 relative ml-auto place-items-center'>
                         {values.map((val, index) => 
                             <button 

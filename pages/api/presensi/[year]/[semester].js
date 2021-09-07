@@ -64,7 +64,7 @@ export default function handler(req, res) {
   }
 
 const formatPresensi = (presensi) => {
-    const monthsStringArray = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'November', 'October', 'December']
+    const monthsStringArray = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
 
     let listMonth = []
 
