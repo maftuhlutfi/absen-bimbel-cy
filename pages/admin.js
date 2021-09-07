@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../components/Context";
 import Card from "../components/shared/Card"
+import CustomHead from "../components/shared/CustomHead";
 import Message from "../components/shared/Message";
 
 const PilihAnakPage = () => {
@@ -38,6 +38,11 @@ const PilihAnakPage = () => {
 
     return (
         <>
+            <CustomHead 
+                title='Login Admin'
+                description='Mulai mengabsen sebagai admin'
+                url='https://absenbimbelcy.vercel.app/admin'
+            />
             <div className='w-full h-screen flex items-center justify-center'>
                 <Card addStyle='bg-white w-full text-center flex flex-col items-center py-8 -mt-40'>
                     <h3 className='text-primary text-2xl font-bold mb-2'>Login Admin</h3>

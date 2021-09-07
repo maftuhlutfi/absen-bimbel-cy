@@ -4,6 +4,7 @@ import AddPresensiSelector from "../components/Admin/AddPresensiSelector"
 import DataAnakCard from "../components/Admin/DataAnakCard"
 import ListPresensi from "../components/Admin/ListPresensi"
 import { DataContext } from "../components/Context"
+import CustomHead from "../components/shared/CustomHead"
 import Greeting from "../components/shared/Greeting"
 import PresensiSelector from "../components/shared/PresensiSelector"
 import getNearestNextDate from "../components/utils/getNearestNextDate"
@@ -64,27 +65,34 @@ const DashboardAdmin = () => {
     }
 
     return (
-    <div className='min-h-screen'>
-        <Greeting name={''} isAdmin={isAdmin} />
-        <DataAnakCard
-            total={presensi.length}
-            laki={presensi.reduce((total, anak) => anak.sex == 'L' ? total + 1 : total, 0)}
-            perempuan={presensi.reduce((total, anak) => anak.sex == 'P' ? total + 1 : total, 0)}
-        />
-        <AddPresensiSelector
-            listTanggal={listTanggal}
-            activeKelas={activeKelas}
-            activeTanggal={activeTanggal}
-            setActiveKelas={setActiveKelas}
-            setActiveTanggal={setActiveTanggal}
-            listKelas={listKelas}
-        />
-        <ListPresensi 
-            presensi={presensi}
-            kelas={activeKelas}
-            tanggal={activeTanggal}
-        />
-    </div>
+        <>
+            <CustomHead 
+                title='Dashboard Admin'
+                description='Mulai mengabsen sebagai admin'
+                url='https://absenbimbelcy.vercel.app/dashboard-admin'
+            />
+            <div className='min-h-screen'>
+                <Greeting name={''} isAdmin={isAdmin} />
+                <DataAnakCard
+                    total={presensi.length}
+                    laki={presensi.reduce((total, anak) => anak.sex == 'L' ? total + 1 : total, 0)}
+                    perempuan={presensi.reduce((total, anak) => anak.sex == 'P' ? total + 1 : total, 0)}
+                />
+                <AddPresensiSelector
+                    listTanggal={listTanggal}
+                    activeKelas={activeKelas}
+                    activeTanggal={activeTanggal}
+                    setActiveKelas={setActiveKelas}
+                    setActiveTanggal={setActiveTanggal}
+                    listKelas={listKelas}
+                />
+                <ListPresensi 
+                    presensi={presensi}
+                    kelas={activeKelas}
+                    tanggal={activeTanggal}
+                />
+            </div>
+        </>
     )
 }
 

@@ -4,6 +4,7 @@ import { DataContext } from "../components/Context"
 import Note from "../components/Home/Note"
 import PresensiCards from "../components/Home/PresensiCards"
 import PresensiDot from "../components/Home/PresensiDot"
+import CustomHead from "../components/shared/CustomHead"
 import Greeting from "../components/shared/Greeting"
 import PresensiSelector from "../components/shared/PresensiSelector"
 import WithAnak from "../components/utils/WithAnak"
@@ -33,13 +34,20 @@ const Home = () => {
   }
 
   return (
-    <div className='h-screen'>
-      <Greeting name={anak.name} isAdmin={false} />
-      <PresensiSelector isAdmin={true} />
-      <PresensiCards {...presensi} />
-      <PresensiDot {...presensi} />
-      <Note />
-    </div>
+    <>
+      <CustomHead 
+          title='Dashboard Orang Tua'
+          description='Pantau presensi anak anda dalam mengikuti bimbel Cakra Yudha'
+          url='https://absenbimbelcy.vercel.app/'
+      />
+      <div className='h-screen'>
+        <Greeting name={anak.name} isAdmin={false} />
+        <PresensiSelector isAdmin={true} />
+        <PresensiCards {...presensi} />
+        <PresensiDot {...presensi} />
+        <Note />
+      </div>
+    </>
   )
 }
 

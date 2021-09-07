@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../components/Context";
 import Card from "../components/shared/Card"
+import CustomHead from "../components/shared/CustomHead";
 import Message from "../components/shared/Message";
 
 const PilihAnakPage = () => {
@@ -58,6 +59,11 @@ const PilihAnakPage = () => {
 
     return (
         <>
+            <CustomHead 
+                title='Pilih Anak'
+                description='Cari nama anak anda dan mulai melihat presensi'
+                url='https://absenbimbelcy.vercel.app/pilih-anak'
+            />
             <div className='w-full h-screen flex items-center justify-center'>
                 <Card addStyle='bg-white w-full text-center flex flex-col items-center py-8 -mt-40'>
                     <h3 className='text-primary text-2xl font-bold mb-2'>Pilih Buah Hati</h3>
