@@ -7,6 +7,7 @@ import PresensiDot from "../components/Home/PresensiDot"
 import CustomHead from "../components/shared/CustomHead"
 import Greeting from "../components/shared/Greeting"
 import PresensiSelector from "../components/shared/PresensiSelector"
+import Spinner from "../components/shared/Spinner"
 import WithAnak from "../components/utils/WithAnak"
 
 const Home = () => {
@@ -30,7 +31,11 @@ const Home = () => {
   }, [semester])
 
   if (!presensi) {
-    return <p>Loading...</p>
+    return (
+      <div className='h-screen'>
+          <Spinner />
+      </div>
+    )
   }
 
   return (

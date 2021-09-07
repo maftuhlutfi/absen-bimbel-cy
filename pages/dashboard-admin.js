@@ -7,6 +7,7 @@ import { DataContext } from "../components/Context"
 import CustomHead from "../components/shared/CustomHead"
 import Greeting from "../components/shared/Greeting"
 import PresensiSelector from "../components/shared/PresensiSelector"
+import Spinner from "../components/shared/Spinner"
 import getNearestNextDate from "../components/utils/getNearestNextDate"
 import WithAdmin from "../components/utils/WithAdmin"
 
@@ -61,7 +62,11 @@ const DashboardAdmin = () => {
     }, [semester])
 
     if (!presensi) {
-    return <p>Loading...</p>
+        return (
+            <div className='h-screen'>
+                <Spinner />
+            </div>
+        )
     }
 
     return (

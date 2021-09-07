@@ -5,6 +5,7 @@ import { DataContext } from "../components/Context";
 import Card from "../components/shared/Card"
 import CustomHead from "../components/shared/CustomHead";
 import Message from "../components/shared/Message";
+import Spinner from "../components/shared/Spinner";
 
 const PilihAnakPage = () => {
     const [listAnak, setListAnak] = useState([])
@@ -33,7 +34,11 @@ const PilihAnakPage = () => {
     }, [semester])
 
     if (!listAnak.length) {
-        return <p>Loading...</p>
+        return (
+            <div className='h-screen'>
+                <Spinner />
+            </div>
+        )
     }
 
     const handleChange = e => {

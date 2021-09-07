@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../Context";
 import Card from "../shared/Card";
 import Message from "../shared/Message";
+import Spinner from "../shared/Spinner";
 
 const ListPresensi = ({presensi, kelas, tanggal}) => {
     const router = useRouter()
@@ -12,6 +13,7 @@ const ListPresensi = ({presensi, kelas, tanggal}) => {
     const [filteredPresensi, setFilteredPresensi] = useState(presensi)
 
     const [message, setMessage] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         let presensiNew = presensi
@@ -67,6 +69,8 @@ const ListPresensi = ({presensi, kelas, tanggal}) => {
 
         const startIndex = presensi.findIndex(p => p.name == filteredPresensi[0].name)
         const endIndex = presensi.findIndex(p => p.name == filteredPresensi[filteredPresensi.length - 1].name)
+
+        setLoading(true)
 
         try {
             const semesterArray = semester.split(' ')
@@ -127,7 +131,7 @@ const ListPresensi = ({presensi, kelas, tanggal}) => {
             </Card>
             <div className='fixed bottom-0 left-0 w-full flex justify-center bg-white py-3 px-8' style={{boxShadow: '0 -2px 10px rgba(0,0,0,0.1)'}}>
                 <button onClick={handleSimpan} className='w-full max-w-md py-3 text-center bg-cust-blue text-white font-semibold rounded-full'>
-                    Simpan
+                    {loading ? <Spinner width='24px' color='#ffffff' /> : 'Simpan'}
                 </button>
             </div>
             {message && <Message {...message} />}
