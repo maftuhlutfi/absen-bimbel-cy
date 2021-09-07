@@ -42,7 +42,8 @@ const AllContextProvider = ({children}) => {
                 window.localStorage.setItem('isAdmin', JSON.stringify(dataState.isAdmin))
             }
         } else {
-            dataDispatch(setIsAdmin(JSON.parse(window.localStorage.getItem('isAdmin')) || false))
+            window.localStorage.setItem('isAdmin', JSON.stringify(dataState.isAdmin))
+            dataDispatch(setIsAdmin(false))
         }
     }, [dataState.isAdmin])
 

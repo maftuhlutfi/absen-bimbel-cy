@@ -26,7 +26,7 @@ const Greeting = ({name, isAdmin}) => {
                     {isAdmin ? 'Admin' : 'Orang Tua ' + name}
                 </h3>
             </div>
-            <SemesterSelect />
+            {isAdmin && <SemesterSelect />}
         </div>
     );
 }

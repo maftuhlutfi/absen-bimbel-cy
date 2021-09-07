@@ -10,19 +10,16 @@ const Header = () => {
 
     const {anak, clearAnak, isAdmin, setIsAdmin} = useContext(DataContext)
 
-    const handleAdmin = () => {
-        router.push('/admin')
-    }
-
     const handleKeluar = () => {
         if (isAdmin) {
             setIsAdmin(false)
             router.reload()
-            return
         }
+    }
 
+    const handlePilihAnak = () => {
         clearAnak()
-        router.reload()
+        router.push('/pilih-anak')
     }
 
     useEffect(() => {
@@ -49,14 +46,17 @@ const Header = () => {
                 </div>
             </div>
             <div className={`bg-black fixed top-0 left-0 bg-opacity-60 w-full h-screen transition-all ease-in duration-200 ${showMenu ? 'opacity-100' : 'opacity-0 hidden'}`}>
-                <div className='bg-white h-screen w-full lg:max-w-md absolute left-1/2 transform -translate-x-1/2 pt-20 text-lg flex flex-col items-center' onClick={handleAdmin}>
-                    
-                    <div className='px-8 py-2 hover:bg-icon-light cursor-pointer flex gap-4 w-full justify-center'>
+                <div className='bg-white h-screen w-full lg:max-w-md absolute left-1/2 transform -translate-x-1/2 pt-20 text-lg flex flex-col items-center'>
+                    <div className='px-8 py-4 hover:bg-icon-light cursor-pointer flex gap-4 w-full justify-center' onClick={handlePilihAnak}>
+                        <Image src='/icons/user.svg' width={20} height={20} />
+                        Pilih Anak
+                    </div>
+                    <div className='px-8 py-4 hover:bg-icon-light cursor-pointer flex gap-4 w-full justify-center' onClick={() => router.push('/admin')}>
                         <Image src='/icons/admin.svg' width={20} height={20} />
                         Admin
                     </div>
-                    {anak || isAdmin &&
-                        <div className='px-8 py-2 hover:bg-icon-light cursor-pointer flex gap-4 w-full justify-center' onClick={handleKeluar}>
+                    {isAdmin &&
+                        <div className='px-8 py-4 hover:bg-icon-light cursor-pointer flex gap-4 w-full justify-center' onClick={handleKeluar}>
                             <Image src='/icons/logout.svg' width={20} height={20} />
                             Keluar
                         </div>
