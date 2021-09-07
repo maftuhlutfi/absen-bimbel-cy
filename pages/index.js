@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../components/Context"
+import NextBimbelNote from "../components/Home/NextBimbelNote"
 import Note from "../components/Home/Note"
 import PresensiCards from "../components/Home/PresensiCards"
 import PresensiDot from "../components/Home/PresensiDot"
@@ -45,9 +46,10 @@ const Home = () => {
           description='Pantau presensi anak anda dalam mengikuti bimbel Cakra Yudha'
           url='https://absenbimbelcy.vercel.app/'
       />
-      <div className='h-screen'>
+      <div className='min-h-screen'>
         <Greeting name={anak.name} isAdmin={false} />
         <PresensiSelector isAdmin={true} />
+        {/* <NextBimbelNote /> */}
         <PresensiCards {...presensi} />
         <PresensiDot {...presensi} />
         <Note />

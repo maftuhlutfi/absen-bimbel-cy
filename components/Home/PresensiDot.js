@@ -17,9 +17,9 @@ const PresensiDot = ({presensi}) => {
                         {values.map((val, index) => 
                             <button 
                                 key={index} 
-                                className={`relative text-xs text-white ${colorByValue[val.value]} w-6 h-6 ${indexBulan < presensi.length && index == 0 && 'col-start-'+ (10 - values.length)}`} 
+                                className={`relative text-xs ${val.value != null ? 'text-white' : 'text-gray-400'} ${colorByValue[val.value]} w-6 h-6 ${indexBulan < presensi.length && index == 0 && 'col-start-'+ (10 - values.length)}`} 
                             >
-                                {val.value != null && val.date}
+                                {val.date}
                             </button>
                         )}
                     </div>
