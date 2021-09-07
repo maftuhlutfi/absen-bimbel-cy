@@ -50,7 +50,7 @@ export default function handler(req, res) {
 
                 await sheet.loadCells(`${headerString}${startIndex+2}:${headerString}${absensi.length + 1 + startIndex}`)
                 await absensi.forEach((value, index) => {
-                    sheet.getCellByA1(`H${index+2+startIndex}`).value = value
+                    sheet.getCellByA1(`${headerString}${index+2+startIndex}`).value = value
                 })
                 await sheet.saveUpdatedCells()
                 await res.send('Sukses update absen.')
