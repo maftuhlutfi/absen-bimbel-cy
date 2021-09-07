@@ -12,12 +12,12 @@ const PresensiDot = ({presensi}) => {
         <Card addStyle='bg-white flex flex-col gap-4 p-6 mb-8'>
             {presensi.map(({monthString, values}, indexBulan) => 
                 <div key={indexBulan} className='flex items-center'>
-                    <p className='w-2/12 flex-shrink-0'>{monthString.slice(0,3)}</p>
-                    <div className='grid grid-cols-9 w-full place-items-center'>
+                    <p className='w-1/12 flex-shrink-0'>{monthString.slice(0,3)}</p>
+                    <div className='flex gap-1.5 relative ml-auto place-items-center'>
                         {values.map((val, index) => 
                             <button 
                                 key={index} 
-                                className={`relative text-xs ${val.value != null ? 'text-white' : 'text-gray-400'} ${colorByValue[val.value]} w-6 h-6 ${indexBulan < presensi.length && index == 0 && 'col-start-'+ (10 - values.length)}`} 
+                                className={`relative text-xs ${val.value != null ? 'text-white' : 'text-gray-400'} ${colorByValue[val.value]} w-6 h-6`} 
                             >
                                 {val.date}
                             </button>
