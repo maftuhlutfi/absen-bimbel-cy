@@ -23,7 +23,7 @@ const PilihAnakPage = () => {
         e.preventDefault()
         if (input == 'arassoyooo') {
             setIsAdmin(true)
-            router.push('dashboard-admin')
+            router.push('/dashboard-admin')
         } else {
             setErrMsg('Special words salah')
         }

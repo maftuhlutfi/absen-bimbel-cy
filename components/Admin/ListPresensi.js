@@ -125,8 +125,8 @@ const ListPresensi = ({presensi, kelas, tanggal}) => {
                     </tbody>
                 </table>
             </Card>
-            <div className='fixed bottom-0 left-0 w-full bg-white py-3 px-8' style={{boxShadow: '0 -2px 10px rgba(0,0,0,0.1)'}}>
-                <button onClick={handleSimpan} className='w-full py-3 text-center bg-cust-blue text-white font-semibold rounded-full'>
+            <div className='fixed bottom-0 left-0 w-full flex justify-center bg-white py-3 px-8' style={{boxShadow: '0 -2px 10px rgba(0,0,0,0.1)'}}>
+                <button onClick={handleSimpan} className='w-full max-w-md py-3 text-center bg-cust-blue text-white font-semibold rounded-full'>
                     Simpan
                 </button>
             </div>
