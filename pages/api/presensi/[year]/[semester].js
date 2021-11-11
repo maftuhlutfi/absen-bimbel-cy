@@ -46,7 +46,7 @@ export default function handler(req, res) {
                 
                 await sheet.loadHeaderRow()
                 const headerIndex = await sheet.headerValues.findIndex(h => h == tanggal)
-                const headerString = await String.fromCharCode(65 + headerIndex)
+                const headerString = await getHeaderString(headerIndex)
 
                 await sheet.loadCells(`${headerString}${startIndex+2}:${headerString}${absensi.length + 1 + startIndex}`)
                 await absensi.forEach((value, index) => {
@@ -95,4 +95,11 @@ const formatPresensi = (presensi) => {
     })
 
     return formattedPresensi
+}
+
+const getHeaderString = i => {
+    if (!Math.floor(i/26)) {
+        return String.fromCharCode(65 + i)
+    }
+    return `${String.fromCharCode(65 + Math.floor(i/26))}${String.fromCharCode(65 + i % 26)}`
 }
