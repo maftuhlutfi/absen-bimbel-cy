@@ -56,7 +56,7 @@ export default function handler(req, res) {
                 await res.send('Sukses update absen.')
             } catch (e) {
                 res.send('error')
-                console.log(e)
+                //console.log(e)
             }
           }())
     }
@@ -101,5 +101,5 @@ const getHeaderString = i => {
     if (!Math.floor(i/26)) {
         return String.fromCharCode(65 + i)
     }
-    return `${String.fromCharCode(65 + Math.floor(i/26))}${String.fromCharCode(65 + i % 26)}`
+    return `${String.fromCharCode(65 + Math.floor(i/26-1))}${String.fromCharCode(65 + i % 26)}`
 }
